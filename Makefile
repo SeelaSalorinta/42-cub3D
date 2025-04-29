@@ -50,7 +50,10 @@ LIBS = -L$(MINILIBX_DIR) -lmlx -L/opt/X11/lib -lX11 -lXext
 
 SRCS = srcs/main.c \
 		srcs/validate_map.c \
-		srcs/parse_map.c \
+		srcs/parse_elements.c \
+		srcs/process_file.c \
+		srcs/check_file_lines.c \
+		srcs/free_and_exit.c
 
 OBJS = $(SRCS:.c=.o)
 
