@@ -1,5 +1,42 @@
 #include "../includes/cub3d.h"
 
+char	*ft_strdup_nl(const char *s1)
+{
+	char	*copy;
+	int		len;
+	int		i;
+
+	if (!s1)
+		return (NULL);
+	len = (int)ft_strlen(s1);
+	i = 0;
+	if (len > 0 && s1[len - 1] == '\n')
+		len--;
+	copy = malloc(len + 1);
+	if (!copy)
+		return (NULL);
+	while (i < len)
+	{
+		copy[i] = s1[i];
+		i++;
+	}
+	copy[len] = '\0';
+	return (copy);
+}
+
+char	*safe_strdup(t_data *data, char *src)
+{
+	char	*dup;
+
+	dup = ft_strdup(src);
+	if (!dup)
+	{
+		ft_putstr_fd(ERR_MALLOC, 2);
+		free_and_exit(data);
+	}
+	return (dup);
+}
+
 static void	set_to_default(t_data *data, char **argv)
 {
 	data->n_tex = NULL;
@@ -8,12 +45,12 @@ static void	set_to_default(t_data *data, char **argv)
 	data->e_tex = NULL;
 	data->map = NULL;
 	data->og_file = NULL;
-	data->floor.red = -1;
-	data->floor.green = -1;
-	data->floor.blue = -1;
-	data->ceiling.red = -1;
-	data->ceiling.green = -1;
-	data->ceiling.blue = -1;
+	data->floor.red = DEFAULT;
+	data->floor.green = DEFAULT;
+	data->floor.blue = DEFAULT;
+	data->ceiling.red = DEFAULT;
+	data->ceiling.green = DEFAULT;
+	data->ceiling.blue = DEFAULT;
 	data->file = argv[1];
 }
 

@@ -7,11 +7,24 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
+typedef enum e_flag
+{
+	RED,
+	GREEN,
+	BLUE,
+	DEFAULT = -1,
+}	t_flag;
+
+//main.c
+char	*safe_strdup(t_data *data, char *src);
+char	*ft_strdup_nl(const char *s1);
+
 //process_file.c
 void	process_file(t_data *data);
 
 //free_and_exit.c
 void	free_and_exit(t_data *data);
+void	exit_with_msg(t_data *data, char *msg);
 
 //parse_elements.c
 void	parse_elements(t_data *data);
@@ -20,6 +33,12 @@ void	parse_elements(t_data *data);
 int		empty_line(char *line);
 int		is_type_line(char *line);
 int		is_map_line(char *line);
+
+//atoi_with_error.c
+int		atoi_with_error(char *str, int *error);
+
+//atoi_positive.c
+int		atoi_positive(char *str, int *error);
 
 #define ERR_MALLOC	"Error: Memory allocation failed\n"
 
