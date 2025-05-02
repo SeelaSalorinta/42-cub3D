@@ -69,19 +69,13 @@ static t_color	parse_color(t_data *data, char *line)
 			target = green;
 		if (color_num == BLUE)
 			target = blue;
-		//ft_printf("This is line in process %s\n", line);
-		//ft_printf("color_num is %d\n", color_num);
+		if (color_num > BLUE)
+			exit_with_msg(data, ERR_COLORS);
 		while (line[i] && (line[i] >= '0' && line[i] <= '9'))
-		{
-		//	ft_printf("target[%d]=%c\n", index, line[i]);
 			target[index++] = line[i++];
-		}
 		target[index] = '\0';
 		if (line[i] != '\0' && line[i] != ',')
-		{
-		//	ft_printf("char is %c", line[i]);
-			exit_with_msg(data, "Missing comma in colors\n");
-		}
+			exit_with_msg(data, ERR_COLORS);
 		else if (line[i] != '\0' && line[i] == ',')
 			i++;
 		else
@@ -97,13 +91,13 @@ static void	assign_color(t_data *data, char *line)
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
 		if (data->floor.red != DEFAULT)
-			exit_with_msg(data, "Error: Duplicate F identifier\n");
+			exit_with_msg(data, ERR_F_DUP);
 		data->floor = parse_color(data, line + 2);
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
 		if (data->ceiling.red != DEFAULT)
-			exit_with_msg(data, "Error: Duplicate C identifier\n");
+			exit_with_msg(data, ERR_C_DUP);
 		data->ceiling = parse_color(data, line + 2);
 	}
 }
@@ -116,14 +110,16 @@ void	assign_tex_or_color(t_data *data, char *line)
 	else if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
 		assign_color(data, line);
 	else
-		exit_with_msg(data, "Error: Unknown identifier\n");
+		exit_with_msg(data, ERR_IDENTIFIER);
 }
 
 void	parse_elements(t_data *data)
 {
 	int	y;
+	int	map_started;
 
 	y = 0;
+	map_started = FALSE;
 	while (data->og_file[y])
 	{
 		if (is_type_line(data->og_file[y]))
@@ -132,11 +128,14 @@ void	parse_elements(t_data *data)
 		{
 			if (is_map_line(data->og_file[y]))
 			{
-				//parse map
+				map_started = TRUE;
+				//parse map && add mapline
 			}
 			else
 				free_and_exit(data);
 		}
+		if (empty_line(data->og_file[y]) && map_started == TRUE)
+			exit_with_msg(data, ERR_EMPTY_LINE);
 		y++;
 	}
 }

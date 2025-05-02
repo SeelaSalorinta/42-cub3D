@@ -118,10 +118,25 @@ void print_data(const t_data *data)
 }
 
 
+static	void	check_everything_is_set(t_data *data)
+{
+	if (!data->n_tex || !data->s_tex || !data->e_tex || !data->w_tex)
+		exit_with_msg(data, ERR_TEXT);
+	if (data->floor.red == DEFAULT || data->floor.green == DEFAULT
+		|| data->floor.blue == DEFAULT)
+		exit_with_msg(data, ERR_F_COLORS);
+	if (data->ceiling.red == DEFAULT || data->ceiling.green == DEFAULT
+		|| data->ceiling.blue == DEFAULT)
+		exit_with_msg(data, ERR_C_COLORS);
+}
+
+
 void	process_file(t_data *data)
 {
 	validate_filename(data->file);
 	save_file_content(data);
 	parse_elements(data);
+	check_everything_is_set(data);
+	//valuidate_map
 	print_data(data);
 }

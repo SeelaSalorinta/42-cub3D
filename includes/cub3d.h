@@ -3,17 +3,10 @@
 
 # include "libft.h"
 # include "structs.h"
+# include "defines.h"
 # include <mlx.h>
 # include <fcntl.h>
 # include <stdlib.h>
-
-typedef enum e_flag
-{
-	RED,
-	GREEN,
-	BLUE,
-	DEFAULT = -1,
-}	t_flag;
 
 //main.c
 char	*safe_strdup(t_data *data, char *src);
@@ -39,7 +32,5 @@ int		atoi_with_error(char *str, int *error);
 
 //atoi_positive.c
 int		atoi_positive(char *str, int *error);
-
-#define ERR_MALLOC	"Error: Memory allocation failed\n"
 
 #endif
