@@ -55,8 +55,13 @@ int	atoi_with_error(char *str, int *error)
 	int		sign;
 
 	sign = 1;
+	if (!str || str[0] == '\0')
+	{
+		*error = 1;
+		return (0);
+	}
 	i = skip_whitespace(str);
-	if (str[i] == '+' || str[i] == '-')
+	if (str[i] && (str[i] == '+' || str[i] == '-'))
 	{
 		if (str[i] == '-')
 			sign = -1;

@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static int	get_height(char *file)
+static int	get_height(t_data *data, char *file)
 {
 	int		fd;
 	char	*line;
@@ -9,10 +9,7 @@ static int	get_height(char *file)
 	line_amount = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_putstr_fd(ERR_OPEN, 2);
-		exit(1);
-	}
+		exit_with_msg(data, ERR_OPEN);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -29,29 +26,21 @@ static void	save_file_content(t_data *data)
 	int		i;
 	char	*line;
 	int		fd;
+	int		height;
 
 	i = 0;
-	malloc_array(data, &data->og_file, get_height(data->file));
+	height = get_height(data, data->file);
+	malloc_array(data, &data->og_file, height);
 	fd = open(data->file, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_putstr_fd(ERR_OPEN, 2);
-		exit(1);
-	}
+		exit_with_msg(data, ERR_OPEN);
 	line = get_next_line(fd);
 	while (line)
 	{
 		data->og_file[i] = ft_strdup_nl(line);
-		if (!data->og_file[i])
-		{
-			free(line);
-			while (--i >= 0)
-				free(data->og_file[i]);
-			free(data->og_file);
-			ft_putstr_fd(ERR_MALLOC, 2);
-			exit(1);
-		}
 		free(line);
+		if (!data->og_file[i])
+			exit_with_msg(data, ERR_MALLOC);
 		i++;
 		line = get_next_line(fd);
 	}

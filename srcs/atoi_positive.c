@@ -8,34 +8,34 @@ static int	error_found(int *error)
 
 static int	skip_whitespace(char *str)
 {
-	int	a;
+	int	i;
 
-	a = 0;
-	while ((str[a] && (str[a] >= 9 && str[a] <= 13))
-		|| str[a] == 32)
-		a++;
-	return (a);
+	i = 0;
+	while ((str[i] && (str[i] >= 9 && str[i] <= 13))
+		|| str[i] == 32)
+		i++;
+	return (i);
 }
 
-static long	process_digits(char *str, int *a, int *has_digit, int *error)
+static long	process_digits(char *str, int *i, int *has_digit, int *error)
 {
 	long	nbr;
 
 	nbr = 0;
-	while (str[*a] && (str[*a] >= '0' && str[*a] <= '9'))
+	while (str[*i] && (str[*i] >= '0' && str[*i] <= '9'))
 	{
 		*has_digit = 1;
-		nbr = nbr * 10 + (str[*a] - '0');
+		nbr = nbr * 10 + (str[*i] - '0');
 		if (nbr > INT_MAX)
 			return (error_found(error));
-		(*a)++;
+		(*i)++;
 	}
 	return (nbr);
 }
 
 int	atoi_positive(char *str, int *error)
 {
-	int		a;
+	int		i;
 	int		has_digit;
 	long	nbr;
 	int		sign;
@@ -43,14 +43,19 @@ int	atoi_positive(char *str, int *error)
 	has_digit = 0;
 	nbr = 0;
 	sign = 1;
-	a = skip_whitespace(str);
-	if (str[a] && (str[a] == '-' || str[a] == '+'))
+	if (!str || str[0] == '\0')
 	{
-		if (str[a] == '-')
-			return (error_found(error));
-		a++;
+		*error = 1;
+		return (0);
 	}
-	nbr = process_digits(str, &a, &has_digit, error);
+	i = skip_whitespace(str);
+	if (str[i] && (str[i] == '-' || str[i] == '+'))
+	{
+		if (str[i] == '-')
+			return (error_found(error));
+		i++;
+	}
+	nbr = process_digits(str, &i, &has_digit, error);
 	if (!has_digit || *error)
 		return (error_found(error));
 	return (sign * nbr);
