@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static t_color	validate_numbers(t_data *data, char *red, char *green, char *blue)
+static t_color	validate_color(t_data *data, char *red, char *green, char *blue)
 {
 	t_color	color;
 	int		error;
@@ -18,42 +18,45 @@ static t_color	validate_numbers(t_data *data, char *red, char *green, char *blue
 	return (color);
 }
 
+static void	save_color(t_data *data, char *line, int *i, char *target)
+{
+	int	index;
+
+	index = 0;
+	while (line[*i] && (line[*i] >= '0' && line[*i] <= '9'))
+	{
+		if (index >= 3)
+			exit_with_msg(data, ERR_COLORS);
+		target[index++] = line[(*i)++];
+	}
+	target[index] = '\0';
+	if (line[*i] != '\0' && line[*i] != ',')
+		exit_with_msg(data, ERR_COLORS);
+	if (line[*i] == ',')
+		(*i)++;
+}
+
 t_color	parse_colors(t_data *data, char *line)
 {
 	char	red[4];
 	char	green[4];
 	char	blue[4];
-	int		color_num;
 	int		i;
-	int		index;
-	char	*target;
+	int		color_num;
 
-	if (!line)
-		exit_with_msg(data, "Error: Invalid color line\n");
 	i = 0;
-	index = 0;
 	color_num = RED;
 	while (line[i])
 	{
 		if (color_num == RED)
-			target = red;
-		if (color_num == GREEN)
-			target = green;
-		if (color_num == BLUE)
-			target = blue;
-		if (color_num > BLUE)
-			exit_with_msg(data, ERR_COLORS);
-		while (line[i] && (line[i] >= '0' && line[i] <= '9'))
-			target[index++] = line[i++];
-		target[index] = '\0';
-		if (line[i] != '\0' && line[i] != ',')
-			exit_with_msg(data, ERR_COLORS);
-		else if (line[i] != '\0' && line[i] == ',')
-			i++;
+			save_color(data, line, &i, red);
+		else if (color_num == GREEN)
+			save_color(data, line, &i, green);
+		else if (color_num == BLUE)
+			save_color(data, line, &i, blue);
 		else
-			break ;
-		index = 0;
+			exit_with_msg(data, ERR_COLORS);
 		color_num++;
 	}
-	return (validate_numbers(data, red, green, blue));
+	return (validate_color(data, red, green, blue));
 }
