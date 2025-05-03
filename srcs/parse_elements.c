@@ -109,33 +109,35 @@ void	assign_tex_or_color(t_data *data, char *line)
 		assign_texture(data, line);
 	else if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
 		assign_color(data, line);
-	else
-		exit_with_msg(data, ERR_IDENTIFIER);
 }
 
 void	parse_elements(t_data *data)
 {
 	int	y;
-	int	map_started;
+	//int	map_started;
 
 	y = 0;
-	map_started = FALSE;
+	//map_started = FALSE;
 	while (data->og_file[y])
 	{
-		if (is_type_line(data->og_file[y]))
+		if (type_line(data->og_file[y]))
 			assign_tex_or_color(data, data->og_file[y]);
 		else if (!empty_line(data->og_file[y]))
 		{
-			if (is_map_line(data->og_file[y]))
+			if (map_line(data->og_file[y]))
 			{
-				map_started = TRUE;
+				//map_started = TRUE;
+				parse_map(data, y);
+				return ;
 				//parse map && add mapline
 			}
 			else
-				free_and_exit(data);
+				exit_with_msg(data, ERR_IDENTIFIER);
 		}
-		if (empty_line(data->og_file[y]) && map_started == TRUE)
-			exit_with_msg(data, ERR_EMPTY_LINE);
+		//if (empty_line(data->og_file[y]) && map_started == TRUE)
+		//	exit_with_msg(data, ERR_EMPTY_LINE);
+		//if (map_started == TRUE && is_type_line(data->og_file[y]))
+		//	exit_with_msg(data, ERR_ELEMENTS);
 		y++;
 	}
 }

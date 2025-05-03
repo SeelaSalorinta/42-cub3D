@@ -49,13 +49,14 @@ MINILIBX = $(MINILIBX_DIR)/libmlx.a
 LIBS = -L$(MINILIBX_DIR) -lmlx -L/opt/X11/lib -lX11 -lXext
 
 SRCS = srcs/main.c \
-		srcs/validate_map.c \
-		srcs/parse_elements.c \
-		srcs/process_file.c \
+		srcs/atoi_positive.c \
+		srcs/atoi_with_error.c \
 		srcs/check_file_lines.c \
 		srcs/free_and_exit.c \
-		srcs/atoi_with_error.c \
-		srcs/atoi_positive.c
+		srcs/parse_elements.c \
+		srcs/parse_map.c \
+		srcs/process_file.c \
+		srcs/validate_map.c
 
 OBJS = $(SRCS:.c=.o)
 

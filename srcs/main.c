@@ -30,11 +30,16 @@ char	*safe_strdup(t_data *data, char *src)
 
 	dup = ft_strdup(src);
 	if (!dup)
-	{
-		ft_putstr_fd(ERR_MALLOC, 2);
-		free_and_exit(data);
-	}
+		exit_with_msg(data, ERR_MALLOC);
 	return (dup);
+}
+
+void	malloc_array(t_data *data, char ***array, int lines)
+{
+	*array = malloc(sizeof(char *) * (lines + 1));
+	if (!*array)
+		exit_with_msg(data, ERR_MALLOC);
+	(*array)[lines] = NULL;
 }
 
 static void	set_to_default(t_data *data, char **argv)
@@ -60,7 +65,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Usage: ./cub3D [map.cub]\n", 2);
+		ft_putstr_fd(ERR_USAGE, 2);
 		return (1);
 	}
 	set_to_default(&data, argv);

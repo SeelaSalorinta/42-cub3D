@@ -10,7 +10,7 @@ static int	get_height(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Error: Failed to open map file\n", 2);
+		ft_putstr_fd(ERR_OPEN, 2);
 		exit(1);
 	}
 	line = get_next_line(fd);
@@ -24,17 +24,6 @@ static int	get_height(char *file)
 	return (line_amount);
 }
 
-static void	malloc_for_file(t_data *data, int line_amount)
-{
-	data->og_file = malloc(sizeof(char *) * (line_amount + 1));
-	if (!data->og_file)
-	{
-		ft_putstr_fd(ERR_MALLOC, 2);
-		exit(1);
-	}
-	data->og_file[line_amount] = NULL;
-}
-
 static void	save_file_content(t_data *data)
 {
 	int		i;
@@ -42,11 +31,11 @@ static void	save_file_content(t_data *data)
 	int		fd;
 
 	i = 0;
-	malloc_for_file(data, get_height(data->file));
+	malloc_array(data, &data->og_file, get_height(data->file));
 	fd = open(data->file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Error: Failed to open map file\n", 2);
+		ft_putstr_fd(ERR_OPEN, 2);
 		exit(1);
 	}
 	line = get_next_line(fd);
@@ -79,7 +68,7 @@ static void	validate_filename(char *file)
 	if (i < 5 || file[i - 4] != '.' || file[i - 3] != 'c' \
 		|| file[i - 2] != 'u' || file[i - 1] != 'b')
 	{
-		ft_putstr_fd("Error: Invalid map file\n", 2);
+		ft_putstr_fd(ERR_FILE, 2);
 		exit(1);
 	}
 }
@@ -121,13 +110,15 @@ void print_data(const t_data *data)
 static	void	check_everything_is_set(t_data *data)
 {
 	if (!data->n_tex || !data->s_tex || !data->e_tex || !data->w_tex)
-		exit_with_msg(data, ERR_TEXT);
+		exit_with_msg(data, ERR_NO_TEX);
 	if (data->floor.red == DEFAULT || data->floor.green == DEFAULT
 		|| data->floor.blue == DEFAULT)
-		exit_with_msg(data, ERR_F_COLORS);
+		exit_with_msg(data, ERR_NO_F);
 	if (data->ceiling.red == DEFAULT || data->ceiling.green == DEFAULT
 		|| data->ceiling.blue == DEFAULT)
-		exit_with_msg(data, ERR_C_COLORS);
+		exit_with_msg(data, ERR_NO_C);
+	if (!data->map)
+		exit_with_msg(data, ERR_NO_MAP);
 }
 
 

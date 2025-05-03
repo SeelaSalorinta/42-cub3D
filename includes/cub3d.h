@@ -8,29 +8,33 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-//main.c
-char	*safe_strdup(t_data *data, char *src);
-char	*ft_strdup_nl(const char *s1);
+//atoi_positive.c
+int		atoi_positive(char *str, int *error);
 
-//process_file.c
-void	process_file(t_data *data);
+//atoi_with_error.c
+int		atoi_with_error(char *str, int *error);
+
+//check_file_lines.c
+int		empty_line(char *line);
+int		type_line(char *line);
+int		map_line(char *line);
 
 //free_and_exit.c
 void	free_and_exit(t_data *data);
 void	exit_with_msg(t_data *data, char *msg);
 
+//main.c
+char	*safe_strdup(t_data *data, char *src);
+char	*ft_strdup_nl(const char *s1);
+void	malloc_array(t_data *data, char ***array, int lines);
+
 //parse_elements.c
 void	parse_elements(t_data *data);
 
-//check_file_lines.c
-int		empty_line(char *line);
-int		is_type_line(char *line);
-int		is_map_line(char *line);
+//parse_map.c
+void	parse_map(t_data *data, int y);
 
-//atoi_with_error.c
-int		atoi_with_error(char *str, int *error);
-
-//atoi_positive.c
-int		atoi_positive(char *str, int *error);
+//process_file.c
+void	process_file(t_data *data);
 
 #endif
