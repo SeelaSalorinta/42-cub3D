@@ -8,7 +8,9 @@ static int	error_found(int *error)
 
 static int	skip_whitespace(char *str)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	while ((str[i] && (str[i] >= 9 && str[i] <= 13))
 		|| str[i] == 32)
 		i++;
@@ -19,7 +21,7 @@ static int	check_overflow(long nbr, int digit, int sign)
 {
 	if (sign == 1 && nbr > (INT_MAX - digit) / 10)
 		return (1);
-	if (sign == -1 && -nbr < (INT_MIN + digit) / 10)
+	if (sign == -1 && (-1 * nbr) < (INT_MIN + digit) / 10)
 		return (1);
 	return (0);
 }

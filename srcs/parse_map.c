@@ -11,7 +11,6 @@ static void	count_map_lines(t_data *data, int y)
 		lines++;
 	}
 	data->map_height = lines;
-	
 }
 
 static void	form_map(t_data *data, int y)

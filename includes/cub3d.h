@@ -28,6 +28,9 @@ char	*safe_strdup(t_data *data, char *src);
 char	*ft_strdup_nl(const char *s1);
 void	malloc_array(t_data *data, char ***array, int lines);
 
+//parse_colors.c
+t_color	parse_colors(t_data *data, char *line);
+
 //parse_elements.c
 void	parse_elements(t_data *data);
 

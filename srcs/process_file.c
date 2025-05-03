@@ -65,7 +65,7 @@ static void	validate_filename(char *file)
 	i = 0;
 	while (file[i])
 		i++;
-	if (i < 5 || file[i - 4] != '.' || file[i - 3] != 'c' \
+	if (i < 5 || file[i - 4] != '.' || file[i - 3] != 'c'
 		|| file[i - 2] != 'u' || file[i - 1] != 'b')
 	{
 		ft_putstr_fd(ERR_FILE, 2);
@@ -106,7 +106,6 @@ void print_data(const t_data *data)
 	}
 }
 
-
 static	void	check_everything_is_set(t_data *data)
 {
 	if (!data->n_tex || !data->s_tex || !data->e_tex || !data->w_tex)
@@ -121,13 +120,11 @@ static	void	check_everything_is_set(t_data *data)
 		exit_with_msg(data, ERR_NO_MAP);
 }
 
-
 void	process_file(t_data *data)
 {
 	validate_filename(data->file);
 	save_file_content(data);
 	parse_elements(data);
 	check_everything_is_set(data);
-	//valuidate_map
 	print_data(data);
 }
