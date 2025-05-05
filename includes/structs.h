@@ -8,6 +8,15 @@ typedef struct s_color
 	int	blue;
 }	t_color;
 
+typedef struct s_player
+{
+	int	x; //player position on map
+	int	y;
+	int	dir_x; // (0,-1) = up, (0,1) = down, (1,0) right, (-1,0) left
+	int	dir_y;
+	int	is_set;
+}	t_player;
+
 typedef struct s_data
 {
 	char	*file;
@@ -21,6 +30,7 @@ typedef struct s_data
 	int		map_width;//do we need?
 	t_color	floor; //floor color
 	t_color	ceiling;
+	t_player	player;
 }	t_data;
 
 #endif

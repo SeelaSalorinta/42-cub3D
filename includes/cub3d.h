@@ -40,4 +40,7 @@ void	parse_map(t_data *data, int y);
 //process_file.c
 void	process_file(t_data *data);
 
+//validate_map.c
+void	validate_map(t_data *data);
+
 #endif

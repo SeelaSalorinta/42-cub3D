@@ -56,7 +56,8 @@ SRCS = srcs/main.c \
 		srcs/parse_colors.c \
 		srcs/parse_elements.c \
 		srcs/parse_map.c \
-		srcs/process_file.c
+		srcs/process_file.c \
+		srcs/validate_map.c
 
 OBJS = $(SRCS:.c=.o)
 

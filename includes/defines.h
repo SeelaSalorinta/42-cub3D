@@ -3,10 +3,12 @@
 
 typedef enum e_flag
 {
+	FALSE,
+	TRUE,
 	RED,
 	GREEN,
 	BLUE,
-	DEFAULT = -1,
+	DEFAULT = -2,
 }	t_flag;
 
 # define ERR_MALLOC	"Error: Memory allocation failed\n"
@@ -29,5 +31,7 @@ typedef enum e_flag
 # define ERR_WE_DUP	"Error: Duplicate WE identifier\n"
 # define ERR_EA_DUP	"Error: Duplicate WE identifier\n"
 # define ERR_INVALID_COLOR	"Error: Color needs to be 0-255\n"
+# define ERR_MANY_PATHS	"Error: Too many paths in texture\n"
+# define TOO_MANY_PLAYERS	"Error: Too many players spawn positions in map\n"
 
 #endif

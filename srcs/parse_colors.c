@@ -25,7 +25,7 @@ static void	save_color(t_data *data, char *line, int *i, char *target)
 	index = 0;
 	while (line[*i] && (line[*i] >= '0' && line[*i] <= '9'))
 	{
-		if (index >= 3)
+		if (index == 3)
 			exit_with_msg(data, ERR_COLORS);
 		target[index++] = line[(*i)++];
 	}

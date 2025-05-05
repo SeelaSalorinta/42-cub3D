@@ -36,10 +36,10 @@ int	map_line(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != '0' || line[i] != '1'
-			|| line[i] != 'N' || line[i] != 'S'
-			|| line[i] != 'E' || line[i] != 'W'
-			|| line[i] != ' ')
+		if (line[i] != '0' && line[i] != '1'
+			&& line[i] != 'N' && line[i] != 'S'
+			&& line[i] != 'E' && line[i] != 'W'
+			&& line[i] != ' ')
 			return (0);
 		i++;
 	}

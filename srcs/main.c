@@ -56,6 +56,7 @@ static void	set_to_default(t_data *data, char **argv)
 	data->ceiling.red = DEFAULT;
 	data->ceiling.green = DEFAULT;
 	data->ceiling.blue = DEFAULT;
+	data->player.is_set = FALSE;
 	data->file = argv[1];
 }
 

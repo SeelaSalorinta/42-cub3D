@@ -1,30 +1,44 @@
 #include "../includes/cub3d.h"
 
+static char	*get_texture(t_data *data, char *text)
+{
+	char	**split;
+	int		i;
+
+	split = ft_split(text, ' ');
+	i = 0;
+	while (split[i])
+		i++;
+	if (i != 1)
+		exit_with_msg(data, ERR_MANY_PATHS);
+	return (safe_strdup(data, text));
+}
+
 static void	assign_texture(t_data *data, char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
 	{
 		if (data->n_tex)
 			exit_with_msg(data, ERR_NO_DUP);
-		data->n_tex = safe_strdup(data, line + 3);
+		data->n_tex = get_texture(data, line + 3);
 	}
 	else if (ft_strncmp(line, "SO ", 3) == 0)
 	{
 		if (data->s_tex)
 			exit_with_msg(data, ERR_SO_DUP);
-		data->s_tex = safe_strdup(data, line + 3);
+		data->s_tex = get_texture(data, line + 3);
 	}
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 	{
 		if (data->w_tex)
 			exit_with_msg(data, ERR_WE_DUP);
-		data->w_tex = safe_strdup(data, line + 3);
+		data->w_tex = get_texture(data, line + 3);
 	}
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 	{
 		if (data->e_tex)
 			exit_with_msg(data, ERR_EA_DUP);
-		data->e_tex = safe_strdup(data, line + 3);
+		data->e_tex = get_texture(data, line + 3);
 	}
 }
 
