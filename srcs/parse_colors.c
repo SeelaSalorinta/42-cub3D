@@ -46,6 +46,8 @@ t_color	parse_colors(t_data *data, char *line)
 
 	i = 0;
 	color_num = RED;
+	while (line[i] && line[i] == ' ')
+		i++;
 	while (line[i])
 	{
 		if (color_num == RED)

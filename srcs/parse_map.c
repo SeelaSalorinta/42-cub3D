@@ -23,7 +23,7 @@ static void	form_map(t_data *data, int y)
 		if (empty_line(data->og_file[y]))
 			exit_with_msg(data, ERR_EMPTY_LINE);
 		if (!map_line(data->og_file[y]))
-			exit_with_msg(data, ERR_MAP_LINE);
+			exit_with_msg(data, ERR_INVALID_CHAR);
 		data->map[i++] = safe_strdup(data, data->og_file[y++]);
 	}
 }

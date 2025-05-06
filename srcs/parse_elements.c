@@ -11,7 +11,7 @@ static char	*get_texture(t_data *data, char *text)
 		i++;
 	if (i != 1)
 		exit_with_msg(data, ERR_MANY_PATHS);
-	return (safe_strdup(data, text));
+	return (safe_strdup(data, split[0]));
 }
 
 static void	assign_texture(t_data *data, char *line)
