@@ -1,5 +1,6 @@
 #include "../includes/cub3d.h"
 
+//momoooooooooooooooi
 char	*ft_strdup_nl(const char *s1)
 {
 	char	*copy;
