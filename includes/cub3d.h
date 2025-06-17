@@ -7,6 +7,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <math.h>
 
 //atoi_positive.c
 int		atoi_positive(char *str, int *error);
@@ -42,5 +43,18 @@ void	process_file(t_data *data);
 
 //validate_map.c
 void	validate_map(t_data *data);
+
+//game.c
+void	game_loop(t_data *data);
+int     close_window(t_data *data);
+int     handle_keypress(int keycode, t_data *data);
+
+//raycast.c
+int	    render_frame(t_data *data);
+void    mlx_set_line(t_data *data, int x, int start, int end, int color);
+void    render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y);
+
+//load_textures.c
+void    load_textures(t_data *data);
 
 #endif

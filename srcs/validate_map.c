@@ -10,21 +10,29 @@ static void	update_player_pos(t_data *data, int y, int x)
 	{
 		data->player.dir_x = 0;
 		data->player.dir_y = -1;
+        data->plane_x = 0.66;
+	    data->plane_y = 0;
 	}
 	if (data->map[y][x] == 'S')
 	{
 		data->player.dir_x = 0;
 		data->player.dir_y = 1;
+        data->plane_x = 0.66;
+	    data->plane_y = 0;
 	}
 	if (data->map[y][x] == 'E')
 	{
 		data->player.dir_x = 1;
 		data->player.dir_y = 0;
+        data->plane_x = 0.66;
+	    data->plane_y = 0;
 	}
 	if (data->map[y][x] == 'W')
 	{
 		data->player.dir_x = -1;
 		data->player.dir_y = 0;
+        data->plane_x = 0.66;
+	    data->plane_y = 0;
 	}
 	data->player.is_set = TRUE;
 }

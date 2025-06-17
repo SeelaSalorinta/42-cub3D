@@ -57,7 +57,10 @@ SRCS = srcs/main.c \
 		srcs/parse_elements.c \
 		srcs/parse_map.c \
 		srcs/process_file.c \
-		srcs/validate_map.c
+		srcs/validate_map.c \
+		srcs/game.c \
+		srcs/raycast.c \
+		srcs/load_textures.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -73,7 +76,7 @@ $(MINILIBX_DIR)/libmlx.a:
 	@make -C $(MINILIBX_DIR)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBFT) $(MINILIBX) $(LIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBFT) $(MINILIBX) $(LIBS) -o $(NAME) -lm
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
