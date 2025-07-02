@@ -40,6 +40,7 @@ static void	update_player_pos(t_data *data, int y, int x)
 		data->plane_x = 0;
 		data->plane_y = -0.66;
 	}
+	data->map[y][x] = '0'; //??
 	data->player.is_set = TRUE;
 }
 

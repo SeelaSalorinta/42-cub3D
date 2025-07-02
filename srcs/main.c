@@ -1,6 +1,5 @@
 #include "../includes/cub3d.h"
 
-//momoooooooooooooooi
 char	*ft_strdup_nl(const char *s1)
 {
 	char	*copy;
@@ -59,7 +58,7 @@ static void	set_to_default(t_data *data, char **argv)
 	data->ceiling.blue = DEFAULT;
 	data->player.is_set = FALSE;
 	data->file = argv[1];
-    data->player.dir_x = 0;
+	data->player.dir_x = 0;
 	data->player.dir_y = 0;
 	data->plane_x = 0;
 	data->plane_y = 0;
@@ -76,8 +75,8 @@ int	main(int argc, char **argv)
 	}
 	set_to_default(&data, argv);
 	process_file(&data);
-    data.mlx = mlx_init();
-    load_textures(&data);   // Load all .xpm textures
-    game_loop(&data);
-    return (0);
+	data.mlx = mlx_init();
+	load_textures(&data);   // Load all .xpm textures
+	game_loop(&data);
+	return (0);
 }

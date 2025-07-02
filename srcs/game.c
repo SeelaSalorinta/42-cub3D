@@ -17,6 +17,8 @@ void	game_loop(t_data *data)
 	mlx_loop(data->mlx);
 }
 
+#include <stdio.h>
+
 int	handle_keypress(int keycode, t_data *data)
 {
 	if (keycode == 65307) // ESC
@@ -29,39 +31,80 @@ int	handle_keypress(int keycode, t_data *data)
 	{
 		double new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
 		double new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
-		if (data->map[(int)new_y][(int)data->player.x] != '1')
+		printf("Trying to move forward to (%f, %f), map char: %c\n",
+		new_x, new_y, data->map[(int)new_y][(int)new_x]);
+		/*if (data->map[(int)new_y][(int)data->player.x] != '1')
 			data->player.y = new_y;
 		if (data->map[(int)data->player.y][(int)new_x] != '1')
+			data->player.x = new_x;*/
+			if (data->map[(int)(new_y)][(int)(new_x)] != '1' &&
+			data->map[(int)(new_y)][(int)(data->player.x)] != '1' &&
+			data->map[(int)(data->player.y)][(int)(new_x)] != '1')
+		{
 			data->player.x = new_x;
+			data->player.y = new_y;
+		}
 	}
 
 	if (keycode == 's') // Move backward
 	{
 		double new_x = data->player.x - data->player.dir_x * MOVE_SPEED;
 		double new_y = data->player.y - data->player.dir_y * MOVE_SPEED;
-		if (data->map[(int)new_y][(int)data->player.x] != '1')
+		printf("Trying to move back to (%f, %f), map char: %c\n",
+		new_x, new_y, data->map[(int)new_y][(int)new_x]);
+		/*if (data->map[(int)new_y][(int)data->player.x] != '1')
 			data->player.y = new_y;
 		if (data->map[(int)data->player.y][(int)new_x] != '1')
+			data->player.x = new_x;*/
+		if (data->map[(int)(new_y)][(int)(new_x)] != '1' &&
+		data->map[(int)(new_y)][(int)(data->player.x)] != '1' &&
+		data->map[(int)(data->player.y)][(int)(new_x)] != '1')
+		{
 			data->player.x = new_x;
+			data->player.y = new_y;
+		}
 	}
-	if (keycode == 'a')
+	if (keycode == 'a') //left
 	{
 		double new_x = data->player.x - data->plane_x * MOVE_SPEED;
 		double new_y = data->player.y - data->plane_y * MOVE_SPEED;
-		if (data->map[(int)new_y][(int)data->player.x] != '1')
+		printf("Trying to move left to (%f, %f), map char: %c\n",
+		new_x, new_y, data->map[(int)new_y][(int)new_x]);
+		printf("Player pos before move: (%f, %f)\n", data->player.x, data->player.y);
+		printf("Trying to move to: (%f, %f)\n", new_x, new_y);
+		printf("Map at new pos: %c\n", data->map[(int)new_y][(int)new_x]);
+		/*if (data->map[(int)new_y][(int)data->player.x] != '1')
 			data->player.y = new_y;
 		if (data->map[(int)data->player.y][(int)new_x] != '1')
+			data->player.x = new_x;*/
+		if (data->map[(int)(new_y)][(int)(new_x)] != '1' &&
+		data->map[(int)(new_y)][(int)(data->player.x)] != '1' &&
+		data->map[(int)(data->player.y)][(int)(new_x)] != '1')
+		{
+			printf("is valid\n");
 			data->player.x = new_x;
+			data->player.y = new_y;
+		}
+		printf("Moved player to: (%f, %f)\n", data->player.x, data->player.y);
 	}
 
-	if (keycode == 'd')
+	if (keycode == 'd') //right
 	{
 		double new_x = data->player.x + data->plane_x * MOVE_SPEED;
 		double new_y = data->player.y + data->plane_y * MOVE_SPEED;
-		if (data->map[(int)new_y][(int)data->player.x] != '1')
+		printf("Trying to move right to (%f, %f), map char: %c\n",
+		new_x, new_y, data->map[(int)new_y][(int)new_x]);
+		/*if (data->map[(int)new_y][(int)data->player.x] != '1')
 			data->player.y = new_y;
 		if (data->map[(int)data->player.y][(int)new_x] != '1')
+			data->player.x = new_x;*/
+		if (data->map[(int)(new_y)][(int)(new_x)] != '1' &&
+		data->map[(int)(new_y)][(int)(data->player.x)] != '1' &&
+		data->map[(int)(data->player.y)][(int)(new_x)] != '1')
+		{
 			data->player.x = new_x;
+			data->player.y = new_y;
+		}
 	}
 
 	if (keycode == 65361) // LEFT arrow

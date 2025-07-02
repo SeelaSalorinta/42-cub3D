@@ -11,8 +11,8 @@ typedef enum e_flag
 	DEFAULT = -2,
 }	t_flag;
 
-# define MOVE_SPEED 0.1
-#define ROT_SPEED 0.05
+# define MOVE_SPEED 0.5
+# define ROT_SPEED 0.25
 # define ERR_MALLOC	"Error: Memory allocation failed\n"
 # define ERR_NO_TEX	"Error: All of the textures are not set\n"
 # define ERR_EMPTY_LINE	"Error: Empty line on map\n"

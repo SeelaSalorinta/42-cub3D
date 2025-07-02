@@ -21,10 +21,10 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	int	x; //player position on map
-	int	y;
-	int	dir_x; // (0,-1) = up, (0,1) = down, (1,0) right, (-1,0) left
-	int	dir_y;
+	double	x; //player position on map (changed it to double)
+	double	y;
+	double	dir_x; // (0,-1) = up, (0,1) = down, (1,0) right, (-1,0) left
+	double	dir_y; //does it need to be double
 	int	is_set;
 }	t_player;
 
@@ -61,13 +61,13 @@ typedef struct s_data
 	char	*e_tex;
 	int		map_height;//do we need?
 	int		map_width;//do we need
-    void	*mlx;
+	void	*mlx;
 	void	*win;
-    t_img	n_img;
-    t_img	s_img;
-    t_img	w_img;
-    t_img	e_img;
-    t_img	screen_img;
+	t_img	n_img;
+	t_img	s_img;
+	t_img	w_img;
+	t_img	e_img;
+	t_img	screen_img;
 	// For raycasting
 	double	camera_x;
 	double	plane_x;

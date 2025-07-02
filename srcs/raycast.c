@@ -121,8 +121,8 @@ void	render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y)
 
 	r.ray_dir_x = ray_dir_x;
 	r.ray_dir_y = ray_dir_y;
-	r.map_x = data->player.x;
-	r.map_y = data->player.y;
+	r.map_x = (int)data->player.x;
+	r.map_y = (int)data->player.y;
 	r.delta_x = fabs(1 / r.ray_dir_x);
 	r.delta_y = fabs(1 / r.ray_dir_y);
 	r.step_x = calc_step(r.ray_dir_x);
