@@ -57,4 +57,8 @@ void    render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y);
 //load_textures.c
 void    load_textures(t_data *data);
 
+//rotations.c
+void	rotate_left(t_data *data);
+void	rotate_right(t_data *data);
+
 #endif

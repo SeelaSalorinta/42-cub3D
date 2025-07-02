@@ -1,38 +1,44 @@
 #include "../includes/cub3d.h"
 
+static void	set_ns_direction(t_data *data, char dir)
+{
+	if (dir == 'N')
+	{
+		data->player.dir_x = 0;
+		data->player.dir_y = -1;
+		data->plane_x = 0.66;
+		data->plane_y = 0;
+	}
+	else if (dir == 'S')
+	{
+		data->player.dir_x = 0;
+		data->player.dir_y = 1;
+		data->plane_x = -0.66;
+		data->plane_y = 0;
+	}
+}
+
 static void	update_player_pos(t_data *data, int y, int x)
 {
 	if (data->player.is_set == TRUE)
 		exit_with_msg(data, TOO_MANY_PLAYERS);
 	data->player.y = y;
 	data->player.x = x;
-	if (data->map[y][x] == 'N')
-	{
-		data->player.dir_x = 0;
-		data->player.dir_y = -1;
-        data->plane_x = 0.66;
-	    data->plane_y = 0;
-	}
-	if (data->map[y][x] == 'S')
-	{
-		data->player.dir_x = 0;
-		data->player.dir_y = 1;
-        data->plane_x = 0.66;
-	    data->plane_y = 0;
-	}
-	if (data->map[y][x] == 'E')
+	if (data->map[y][x] == 'N' || data->map[y][x] == 'S')
+		set_ns_direction(data, data->map[y][x]);
+	else if (data->map[y][x] == 'E')
 	{
 		data->player.dir_x = 1;
 		data->player.dir_y = 0;
-        data->plane_x = 0.66;
-	    data->plane_y = 0;
+		data->plane_x = 0;
+		data->plane_y = 0.66;
 	}
-	if (data->map[y][x] == 'W')
+	else if (data->map[y][x] == 'W')
 	{
 		data->player.dir_x = -1;
 		data->player.dir_y = 0;
-        data->plane_x = 0.66;
-	    data->plane_y = 0;
+		data->plane_x = 0;
+		data->plane_y = -0.66;
 	}
 	data->player.is_set = TRUE;
 }

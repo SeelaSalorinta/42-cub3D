@@ -73,11 +73,33 @@ static void	set_tex(t_data *data, t_ray *r)
 
 int	render_frame(t_data *data)
 {
-	int			x;
+	int			x, y;
 	double		camera_x;
 	double		ray_dir_x;
 	double		ray_dir_y;
 
+	for (y = 0; y < 600 / 2; y++)
+	{
+		for (x = 0; x < 800; x++)
+		{
+			put_pixel(&data->screen_img, x, y, 
+					 (data->ceiling.red << 16) | 
+					 (data->ceiling.green << 8) | 
+					 data->ceiling.blue);
+		}
+	}
+	
+	// Draw floor
+	for (y = 600 / 2; y < 600; y++)
+	{
+		for (x = 0; x < 800; x++)
+		{
+			put_pixel(&data->screen_img, x, y, 
+					 (data->floor.red << 16) | 
+					 (data->floor.green << 8) | 
+					 data->floor.blue);
+		}
+	}
 	x = 0;
 	while (x < 800)
 	{

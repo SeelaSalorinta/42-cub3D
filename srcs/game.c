@@ -16,6 +16,7 @@ void	game_loop(t_data *data)
 	mlx_loop_hook(data->mlx, render_frame, data);
 	mlx_loop(data->mlx);
 }
+
 int	handle_keypress(int keycode, t_data *data)
 {
 	if (keycode == 65307) // ESC
@@ -43,9 +44,30 @@ int	handle_keypress(int keycode, t_data *data)
 		if (data->map[(int)data->player.y][(int)new_x] != '1')
 			data->player.x = new_x;
 	}
+	if (keycode == 'a')
+	{
+		double new_x = data->player.x - data->plane_x * MOVE_SPEED;
+		double new_y = data->player.y - data->plane_y * MOVE_SPEED;
+		if (data->map[(int)new_y][(int)data->player.x] != '1')
+			data->player.y = new_y;
+		if (data->map[(int)data->player.y][(int)new_x] != '1')
+			data->player.x = new_x;
+	}
 
-	// Optional: add 'a' and 'd' for strafing
-	// Optional: add left/right arrows for rotation
+	if (keycode == 'd')
+	{
+		double new_x = data->player.x + data->plane_x * MOVE_SPEED;
+		double new_y = data->player.y + data->plane_y * MOVE_SPEED;
+		if (data->map[(int)new_y][(int)data->player.x] != '1')
+			data->player.y = new_y;
+		if (data->map[(int)data->player.y][(int)new_x] != '1')
+			data->player.x = new_x;
+	}
+
+	if (keycode == 65361) // LEFT arrow
+		rotate_left(data);
+	if (keycode == 65363) // RIGHT arrow
+		rotate_right(data);
 
 	return (0);
 }

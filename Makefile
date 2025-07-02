@@ -60,7 +60,8 @@ SRCS = srcs/main.c \
 		srcs/validate_map.c \
 		srcs/game.c \
 		srcs/raycast.c \
-		srcs/load_textures.c
+		srcs/load_textures.c \
+		srcs/rotations.c
 
 OBJS = $(SRCS:.c=.o)
 
