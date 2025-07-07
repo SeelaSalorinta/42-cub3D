@@ -17,101 +17,57 @@ void	game_loop(t_data *data)
 	mlx_loop(data->mlx);
 }
 
-#include <stdio.h>
+static void	check_player_pos(t_data *data, double new_y, double new_x)
+{
+	if (data->map[(int)new_y][(int)new_x] != '1')
+	{
+		data->player.x = new_x;
+		data->player.y = new_y;
+	}
+}
+
+static void	update_player_position(int keycode, t_data *data)
+{
+	double	new_x;
+	double	new_y;
+
+	if (keycode == 'w')
+	{
+		new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
+		new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
+	}
+	else if (keycode == 's')
+	{
+		new_x = data->player.x - data->player.dir_x * MOVE_SPEED;
+		new_y = data->player.y - data->player.dir_y * MOVE_SPEED;
+	}
+	else if (keycode == 'a')
+	{
+		new_x = data->player.x - data->plane_x * MOVE_SPEED;
+		new_y = data->player.y - data->plane_y * MOVE_SPEED;
+	}
+	else
+	{
+		new_x = data->player.x + data->plane_x * MOVE_SPEED;
+		new_y = data->player.y + data->plane_y * MOVE_SPEED;
+	}
+	check_player_pos(data, new_y, new_x);
+}
 
 int	handle_keypress(int keycode, t_data *data)
 {
-	if (keycode == 65307) // ESC
+	if (keycode == 65307)
 	{
 		mlx_destroy_window(data->mlx, data->win);
 		exit(0);
 	}
-
-	if (keycode == 'w') // Move forward
-	{
-		double new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
-		double new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
-		printf("Trying to move forward to (%f, %f), map char: %c\n",
-		new_x, new_y, data->map[(int)new_y][(int)new_x]);
-		/*if (data->map[(int)new_y][(int)data->player.x] != '1')
-			data->player.y = new_y;
-		if (data->map[(int)data->player.y][(int)new_x] != '1')
-			data->player.x = new_x;*/
-			if (data->map[(int)(new_y)][(int)(new_x)] != '1' &&
-			data->map[(int)(new_y)][(int)(data->player.x)] != '1' &&
-			data->map[(int)(data->player.y)][(int)(new_x)] != '1')
-		{
-			data->player.x = new_x;
-			data->player.y = new_y;
-		}
-	}
-
-	if (keycode == 's') // Move backward
-	{
-		double new_x = data->player.x - data->player.dir_x * MOVE_SPEED;
-		double new_y = data->player.y - data->player.dir_y * MOVE_SPEED;
-		printf("Trying to move back to (%f, %f), map char: %c\n",
-		new_x, new_y, data->map[(int)new_y][(int)new_x]);
-		/*if (data->map[(int)new_y][(int)data->player.x] != '1')
-			data->player.y = new_y;
-		if (data->map[(int)data->player.y][(int)new_x] != '1')
-			data->player.x = new_x;*/
-		if (data->map[(int)(new_y)][(int)(new_x)] != '1' &&
-		data->map[(int)(new_y)][(int)(data->player.x)] != '1' &&
-		data->map[(int)(data->player.y)][(int)(new_x)] != '1')
-		{
-			data->player.x = new_x;
-			data->player.y = new_y;
-		}
-	}
-	if (keycode == 'a') //left
-	{
-		double new_x = data->player.x - data->plane_x * MOVE_SPEED;
-		double new_y = data->player.y - data->plane_y * MOVE_SPEED;
-		printf("Trying to move left to (%f, %f), map char: %c\n",
-		new_x, new_y, data->map[(int)new_y][(int)new_x]);
-		printf("Player pos before move: (%f, %f)\n", data->player.x, data->player.y);
-		printf("Trying to move to: (%f, %f)\n", new_x, new_y);
-		printf("Map at new pos: %c\n", data->map[(int)new_y][(int)new_x]);
-		/*if (data->map[(int)new_y][(int)data->player.x] != '1')
-			data->player.y = new_y;
-		if (data->map[(int)data->player.y][(int)new_x] != '1')
-			data->player.x = new_x;*/
-		if (data->map[(int)(new_y)][(int)(new_x)] != '1' &&
-		data->map[(int)(new_y)][(int)(data->player.x)] != '1' &&
-		data->map[(int)(data->player.y)][(int)(new_x)] != '1')
-		{
-			printf("is valid\n");
-			data->player.x = new_x;
-			data->player.y = new_y;
-		}
-		printf("Moved player to: (%f, %f)\n", data->player.x, data->player.y);
-	}
-
-	if (keycode == 'd') //right
-	{
-		double new_x = data->player.x + data->plane_x * MOVE_SPEED;
-		double new_y = data->player.y + data->plane_y * MOVE_SPEED;
-		printf("Trying to move right to (%f, %f), map char: %c\n",
-		new_x, new_y, data->map[(int)new_y][(int)new_x]);
-		/*if (data->map[(int)new_y][(int)data->player.x] != '1')
-			data->player.y = new_y;
-		if (data->map[(int)data->player.y][(int)new_x] != '1')
-			data->player.x = new_x;*/
-		if (data->map[(int)(new_y)][(int)(new_x)] != '1' &&
-		data->map[(int)(new_y)][(int)(data->player.x)] != '1' &&
-		data->map[(int)(data->player.y)][(int)(new_x)] != '1')
-		{
-			data->player.x = new_x;
-			data->player.y = new_y;
-		}
-	}
-
-	if (keycode == 65361) // LEFT arrow
+	if (keycode == 'w' || keycode == 's'
+		|| keycode == 'a' || keycode == 'd')
+		update_player_position(keycode, data);
+	if (keycode == 65361)
 		rotate_left(data);
-	if (keycode == 65363) // RIGHT arrow
+	if (keycode == 65363)
 		rotate_right(data);
-
 	return (0);
 }
 

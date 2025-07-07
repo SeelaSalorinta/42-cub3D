@@ -71,35 +71,57 @@ static void	set_tex(t_data *data, t_ray *r)
 		r->tex = &data->s_img;
 }
 
+static void	render_ceiling(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < 600 / 2)
+	{
+		x = 0;
+		while (x < 800)
+		{
+			put_pixel(&data->screen_img, x, y, 
+					(data->ceiling.red << 16) | 
+					(data->ceiling.green << 8) | 
+					data->ceiling.blue);
+			x++;
+		}
+		y++;
+	}
+}
+
+static void	render_floor(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = 600 / 2;
+	while (y < 600)
+	{
+		x = 0;
+		while (x < 800)
+		{
+			put_pixel(&data->screen_img, x, y, 
+					(data->floor.red << 16) | 
+					(data->floor.green << 8) | 
+					data->floor.blue);
+			x++;
+		}
+		y++;
+	}
+}
+
 int	render_frame(t_data *data)
 {
-	int			x, y;
+	int			x;
 	double		camera_x;
 	double		ray_dir_x;
 	double		ray_dir_y;
 
-	for (y = 0; y < 600 / 2; y++)
-	{
-		for (x = 0; x < 800; x++)
-		{
-			put_pixel(&data->screen_img, x, y, 
-					 (data->ceiling.red << 16) | 
-					 (data->ceiling.green << 8) | 
-					 data->ceiling.blue);
-		}
-	}
-	
-	// Draw floor
-	for (y = 600 / 2; y < 600; y++)
-	{
-		for (x = 0; x < 800; x++)
-		{
-			put_pixel(&data->screen_img, x, y, 
-					 (data->floor.red << 16) | 
-					 (data->floor.green << 8) | 
-					 data->floor.blue);
-		}
-	}
+	render_ceiling(data);
+	render_floor(data);
 	x = 0;
 	while (x < 800)
 	{
