@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 	set_to_default(&data, argv);
 	process_file(&data);
 	data.mlx = mlx_init();
-	load_textures(&data);   // Load all .xpm textures
+	load_textures(&data);
 	game_loop(&data);
 	return (0);
 }

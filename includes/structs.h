@@ -60,7 +60,6 @@ typedef struct s_data
 	char	*w_tex;
 	char	*e_tex;
 	int		map_height;//do we need?
-	int		map_width;//do we need
 	void	*mlx;
 	void	*win;
 	t_img	n_img;
@@ -68,13 +67,12 @@ typedef struct s_data
 	t_img	w_img;
 	t_img	e_img;
 	t_img	screen_img;
-	// For raycasting
 	double	camera_x;
 	double	plane_x;
 	double	plane_y;
-	t_color	floor; //floor color
+	t_color	floor;
 	t_color	ceiling;
 	t_player	player;
-}   t_data;
+}	t_data;
 
 #endif
