@@ -61,14 +61,20 @@ static void	draw_column(t_data *data, int x, t_ray *r)
 
 static void	set_tex(t_data *data, t_ray *r)
 {
-	if (r->side == 0 && r->ray_dir_x > 0)
-		r->tex = &data->w_img;
-	else if (r->side == 0 && r->ray_dir_x < 0)
-		r->tex = &data->e_img;
-	else if (r->side == 1 && r->ray_dir_y > 0)
-		r->tex = &data->n_img;
+	if (r->side == 0)
+	{
+		if (r->ray_dir_x > 0)
+			r->tex = &data->e_img;
+		else
+			r->tex = &data->w_img;
+	}
 	else
-		r->tex = &data->s_img;
+	{
+		if (r->ray_dir_y > 0)
+			r->tex = &data->s_img;
+		else
+			r->tex = &data->n_img;
+	}
 }
 
 static void	render_ceiling(t_data *data)
@@ -170,6 +176,8 @@ void	render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y)
 			r.hit = 1;
 	}
 	perp = calc_perp_dist(data, &r);
+    if (perp < 0.01)
+	    perp = 0.01;
 	r.line_height = (int)(600 / perp);
 	r.draw_start = -r.line_height / 2 + 600 / 2;
 	r.draw_end = r.line_height / 2 + 600 / 2;
