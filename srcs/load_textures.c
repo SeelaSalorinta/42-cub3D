@@ -2,13 +2,14 @@
 
 static void	load_one_texture(t_data *data, char *path, t_img *img)
 {
-	int w, h;
+	int	w;
+	int	h;
 
 	img->ptr = mlx_xpm_file_to_image(data->mlx, path, &w, &h);
 	if (!img->ptr)
-		exit_with_msg(data, "Error loading texture");
-
-	img->addr = mlx_get_data_addr(img->ptr, &img->bpp, &img->line_len, &img->endian);
+		exit_with_msg(data, "Error loading texture\n");
+	img->addr = mlx_get_data_addr(img->ptr, &img->bpp,
+			&img->line_len, &img->endian);
 	img->width = w;
 	img->height = h;
 }

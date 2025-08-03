@@ -25,7 +25,7 @@ typedef struct s_player
 	double	y;
 	double	dir_x; // (0,-1) = up, (0,1) = down, (1,0) right, (-1,0) left
 	double	dir_y; //does it need to be double
-	int	is_set;
+	int		is_set;
 }	t_player;
 
 typedef struct s_ray
@@ -49,29 +49,28 @@ typedef struct s_ray
 	double	ray_dir_y;
 }	t_ray;
 
-
 typedef struct s_data
 {
-	char	*file;
-	char	**map;
-	char	**og_file; //file with all lines
-	char	*n_tex; //path to north texture
-	char	*s_tex;
-	char	*w_tex;
-	char	*e_tex;
-	int		map_height;//do we need?
-	void	*mlx;
-	void	*win;
-	t_img	n_img;
-	t_img	s_img;
-	t_img	w_img;
-	t_img	e_img;
-	t_img	screen_img;
-	double	camera_x;
-	double	plane_x;
-	double	plane_y;
-	t_color	floor;
-	t_color	ceiling;
+	char		*file;
+	char		**map;
+	char		**og_file; //file with all lines
+	char		*n_tex; //path to north texture
+	char		*s_tex;
+	char		*w_tex;
+	char		*e_tex;
+	int			map_height;//do we need?
+	void		*mlx;
+	void		*win;
+	t_img		n_img;
+	t_img		s_img;
+	t_img		w_img;
+	t_img		e_img;
+	t_img		screen_img;
+	double		camera_x;
+	double		plane_x;
+	double		plane_y;
+	t_color		floor;
+	t_color		ceiling;
 	t_player	player;
 }	t_data;
 
