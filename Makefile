@@ -50,7 +50,6 @@ LIBS = -L$(MINILIBX_DIR) -lmlx -L/opt/X11/lib -lX11 -lXext
 
 SRCS = srcs/main.c \
 		srcs/atoi_positive.c \
-		srcs/atoi_with_error.c \
 		srcs/check_file_lines.c \
 		srcs/free_and_exit.c \
 		srcs/game.c \

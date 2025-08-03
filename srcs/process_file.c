@@ -82,5 +82,4 @@ void	process_file(t_data *data)
 	save_file_content(data);
 	parse_elements(data);
 	check_everything_is_set(data);
-	print_data(data);
 }

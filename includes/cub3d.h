@@ -12,9 +12,6 @@
 //atoi_positive.c
 int		atoi_positive(char *str, int *error);
 
-//atoi_with_error.c
-int		atoi_with_error(char *str, int *error);
-
 //check_file_lines.c
 int		empty_line(char *line);
 int		type_line(char *line);
