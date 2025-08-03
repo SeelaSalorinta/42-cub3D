@@ -53,15 +53,15 @@ SRCS = srcs/main.c \
 		srcs/atoi_with_error.c \
 		srcs/check_file_lines.c \
 		srcs/free_and_exit.c \
+		srcs/game.c \
+		srcs/load_textures.c \
 		srcs/parse_colors.c \
 		srcs/parse_elements.c \
 		srcs/parse_map.c \
 		srcs/process_file.c \
-		srcs/validate_map.c \
-		srcs/game.c \
 		srcs/raycast.c \
-		srcs/load_textures.c \
-		srcs/rotations.c
+		srcs/rotations.c \
+		srcs/validate_map.c
 
 OBJS = $(SRCS:.c=.o)
 
