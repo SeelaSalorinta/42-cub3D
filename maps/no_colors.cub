@@ -1,9 +1,9 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/red.xpm
+SO ./textures/green.xpm
+WE ./textures/blue.xpm
+EA ./textures/yellow.xpm
 
-
+F 0,0,0
 
         1111111111111111111111111
         1000000000110000000000001

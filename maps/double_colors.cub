@@ -1,11 +1,11 @@
 
-F 244,5,5
-C 6,6,6
+F 255,153,204
+C 153,153,255
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/red.xpm
+SO ./textures/green.xpm
+WE ./textures/blue.xpm
+EA ./textures/yellow.xpm
 
 F 220,100,0
 C 225,30,20

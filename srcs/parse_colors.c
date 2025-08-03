@@ -26,12 +26,12 @@ static void	save_color(t_data *data, char *line, int *i, char *target)
 	while (line[*i] && (line[*i] >= '0' && line[*i] <= '9'))
 	{
 		if (index == 3)
-			exit_with_msg(data, ERR_COLORS);
+			exit_with_msg(data, ERR_INVALID_COLOR);
 		target[index++] = line[(*i)++];
 	}
 	target[index] = '\0';
 	if (line[*i] != '\0' && line[*i] != ',')
-		exit_with_msg(data, ERR_COLORS);
+		exit_with_msg(data, ERR_COLOR_FORMAT);
 	if (line[*i] == ',')
 		(*i)++;
 }
@@ -57,7 +57,7 @@ t_color	parse_colors(t_data *data, char *line)
 		else if (color_num == BLUE)
 			save_color(data, line, &i, blue);
 		else
-			exit_with_msg(data, ERR_COLORS);
+			exit_with_msg(data, ERR_COLOR_FORMAT);
 		color_num++;
 	}
 	return (validate_color(data, red, green, blue));
