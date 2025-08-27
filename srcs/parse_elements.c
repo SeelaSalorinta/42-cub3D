@@ -3,15 +3,21 @@
 static char	*get_texture(t_data *data, char *text)
 {
 	char	**split;
+	char	*dup;
 	int		i;
 
-	split = ft_split(text, ' ');
 	i = 0;
+	dup = NULL;
+	split = ft_split(text, ' ');
+	if (!split)
+		exit_with_msg(data, ERR_MALLOC);
 	while (split[i])
 		i++;
 	if (i != 1)
 		exit_with_msg(data, ERR_MANY_PATHS);
-	return (safe_strdup(data, split[0]));
+	dup = safe_strdup(data, split[0]);
+	clean_arr(&split);
+	return (dup);
 }
 
 static void	assign_texture(t_data *data, char *line)

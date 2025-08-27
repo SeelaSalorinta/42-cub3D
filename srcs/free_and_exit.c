@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-static void	clean_arr(char ***arr)
+void	clean_arr(char ***arr)
 {
 	int	i;
 

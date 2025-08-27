@@ -20,6 +20,7 @@ int		map_line(char *line);
 //free_and_exit.c
 void	free_and_exit(t_data *data);
 void	exit_with_msg(t_data *data, char *msg);
+void	clean_arr(char ***arr);
 
 //game.c
 void	game_loop(t_data *data);
