@@ -27,7 +27,8 @@ static int	calc_step(double ray_dir)
 static double	calc_perp_dist(t_data *data, t_ray *r)
 {
 	if (r->side == 0)
-		return ((r->map_x - data->player.x + (1 - r->step_x) / 2.0) / r->ray_dir_x);
+		return ((r->map_x - data->player.x + (1 - r->step_x) / 2.0)
+			/ r->ray_dir_x);
 	return ((r->map_y - data->player.y + (1 - r->step_y) / 2.0) / r->ray_dir_y);
 }
 
@@ -52,7 +53,7 @@ static void	draw_column(t_data *data, int x, t_ray *r)
 		d = y * 256 - 600 * 128 + r->line_height * 128;
 		tex_y = ((d * r->tex->height) / r->line_height) / 256;
 		pix = r->tex->addr + (tex_y * r->tex->line_len
-			+ r->tex_x * (r->tex->bpp / 8));
+				+ r->tex_x * (r->tex->bpp / 8));
 		color = *(unsigned int *)pix;
 		put_pixel(&data->screen_img, x, y, color);
 		y++;
@@ -88,10 +89,10 @@ static void	render_ceiling(t_data *data)
 		x = 0;
 		while (x < 800)
 		{
-			put_pixel(&data->screen_img, x, y, 
-					(data->ceiling.red << 16) | 
-					(data->ceiling.green << 8) | 
-					data->ceiling.blue);
+			put_pixel(&data->screen_img, x, y,
+				(data->ceiling.red << 16)
+				| (data->ceiling.green << 8)
+				| data->ceiling.blue);
 			x++;
 		}
 		y++;
@@ -109,10 +110,10 @@ static void	render_floor(t_data *data)
 		x = 0;
 		while (x < 800)
 		{
-			put_pixel(&data->screen_img, x, y, 
-					(data->floor.red << 16) | 
-					(data->floor.green << 8) | 
-					data->floor.blue);
+			put_pixel(&data->screen_img, x, y,
+				(data->floor.red << 16)
+				| (data->floor.green << 8)
+				| data->floor.blue);
 			x++;
 		}
 		y++;
@@ -134,7 +135,7 @@ int	render_frame(t_data *data)
 		camera_x = 2 * x / 800.0 - 1;
 		ray_dir_x = data->player.dir_x + data->plane_x * camera_x;
 		ray_dir_y = data->player.dir_y + data->plane_y * camera_x;
-		render_ray(data, x, ray_dir_x, ray_dir_y); // match function signature
+		render_ray(data, x, ray_dir_x, ray_dir_y);
 		x++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->screen_img.ptr, 0, 0);
@@ -155,8 +156,10 @@ void	render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y)
 	r.delta_y = fabs(1 / r.ray_dir_y);
 	r.step_x = calc_step(r.ray_dir_x);
 	r.step_y = calc_step(r.ray_dir_y);
-	r.side_x = calc_side_dist(data->player.x, r.map_x, r.delta_x, r.ray_dir_x < 0);
-	r.side_y = calc_side_dist(data->player.y, r.map_y, r.delta_y, r.ray_dir_y < 0);
+	r.side_x = calc_side_dist(data->player.x, r.map_x,
+			r.delta_x, r.ray_dir_x < 0);
+	r.side_y = calc_side_dist(data->player.y, r.map_y,
+			r.delta_y, r.ray_dir_y < 0);
 	r.hit = 0;
 	while (!r.hit)
 	{
@@ -176,8 +179,8 @@ void	render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y)
 			r.hit = 1;
 	}
 	perp = calc_perp_dist(data, &r);
-    if (perp < 0.01)
-	    perp = 0.01;
+	if (perp < 0.01)
+		perp = 0.01;
 	r.line_height = (int)(600 / perp);
 	r.draw_start = -r.line_height / 2 + 600 / 2;
 	r.draw_end = r.line_height / 2 + 600 / 2;
