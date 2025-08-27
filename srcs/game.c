@@ -2,7 +2,7 @@
 
 void	game_loop(t_data *data)
 {
-	data->mlx = mlx_init();
+	//data->mlx = mlx_init(); two mlx inits???
 	data->win = mlx_new_window(data->mlx, 800, 600, "cub3D");
 	mlx_hook(data->win, 2, 1L << 0, handle_keypress, data);
 	mlx_hook(data->win, 17, 0, close_window, data);
