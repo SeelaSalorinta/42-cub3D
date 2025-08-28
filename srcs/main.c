@@ -61,6 +61,7 @@ static void	set_to_default(t_data *data, char **argv)
 	data->w_tex = NULL;
 	data->e_tex = NULL;
 	data->map = NULL;
+	data->mlx = NULL;
 	data->og_file = NULL;
 	data->floor.red = DEFAULT;
 	data->floor.green = DEFAULT;
