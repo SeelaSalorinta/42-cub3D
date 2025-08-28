@@ -16,7 +16,7 @@ static void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || y < 0 || x >= 800 || y >= 600)
+	if (x < 0 || y < 0 || x >= SCREEN_W || y >= SCREEN_H)
 		return ;
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
@@ -33,7 +33,7 @@ void	draw_column(t_data *data, int x, t_ray *r)
 	y = r->draw_start;
 	while (y < r->draw_end)
 	{
-		d = y * 256 - 600 * 128 + r->line_height * 128;
+		d = y * 256 - SCREEN_H * 128 + r->line_height * 128;
 		tex_y = ((d * r->tex->height) / r->line_height) / 256;
 		pix = r->tex->addr + (tex_y * r->tex->line_len
 				+ r->tex_x * (r->tex->bpp / 8));
@@ -49,10 +49,10 @@ static void	render_ceiling(t_data *data)
 	int	x;
 
 	y = 0;
-	while (y < 600 / 2)
+	while (y < SCREEN_H / 2)
 	{
 		x = 0;
-		while (x < 800)
+		while (x < SCREEN_W)
 		{
 			put_pixel(&data->screen_img, x, y,
 				(data->ceiling.red << 16)
@@ -69,11 +69,11 @@ static void	render_floor(t_data *data)
 	int	y;
 	int	x;
 
-	y = 600 / 2;
-	while (y < 600)
+	y = SCREEN_H / 2;
+	while (y < SCREEN_H)
 	{
 		x = 0;
-		while (x < 800)
+		while (x < SCREEN_W)
 		{
 			put_pixel(&data->screen_img, x, y,
 				(data->floor.red << 16)
@@ -95,9 +95,9 @@ int	render_frame(t_data *data)
 	render_ceiling(data);
 	render_floor(data);
 	x = 0;
-	while (x < 800)
+	while (x < SCREEN_W)
 	{
-		camera_x = 2 * x / 800.0 - 1;
+		camera_x = 2 * x / (double)SCREEN_W - 1;
 		ray_dir_x = data->player.dir_x + data->plane_x * camera_x;
 		ray_dir_y = data->player.dir_y + data->plane_y * camera_x;
 		render_ray(data, x, ray_dir_x, ray_dir_y);

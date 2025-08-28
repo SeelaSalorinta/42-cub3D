@@ -14,10 +14,10 @@
 
 void	game_loop(t_data *data)
 {
-	data->win = mlx_new_window(data->mlx, 800, 600, "cub3D");
+	data->win = mlx_new_window(data->mlx, SCREEN_W, SCREEN_H, "cub3D");
 	mlx_hook(data->win, 2, 1L << 0, handle_keypress, data);
 	mlx_hook(data->win, 17, 0, close_window, data);
-	data->screen_img.ptr = mlx_new_image(data->mlx, 800, 600);
+	data->screen_img.ptr = mlx_new_image(data->mlx, SCREEN_W, SCREEN_H);
 	data->screen_img.addr = mlx_get_data_addr(
 			data->screen_img.ptr, &data->screen_img.bpp,
 			&data->screen_img.line_len, &data->screen_img.endian);
