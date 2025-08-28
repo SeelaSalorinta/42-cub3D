@@ -6,7 +6,7 @@
 /*   By: ssalorin <ssalorin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:35:28 by ssalorin          #+#    #+#             */
-/*   Updated: 2025/08/28 12:35:45 by ssalorin         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:20:01 by jkarhu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	handle_keypress(int keycode, t_data *data)
 	if (keycode == 65307)
 	{
 		mlx_destroy_window(data->mlx, data->win);
+		free_and_exit(data);
 		exit(0);
 	}
 	if (keycode == 'w' || keycode == 's'
@@ -82,6 +83,7 @@ int	handle_keypress(int keycode, t_data *data)
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
+	free_and_exit(data);
 	exit(0);
 	return (0);
 }

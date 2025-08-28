@@ -6,7 +6,7 @@
 /*   By: ssalorin <ssalorin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:42:28 by ssalorin          #+#    #+#             */
-/*   Updated: 2025/08/28 12:42:37 by ssalorin         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:53:06 by jkarhu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef enum e_flag
 	DEFAULT = -2,
 }	t_flag;
 
+# define SCREEN_W 800
+# define SCREEN_H 600
 # define MOVE_SPEED 0.5
 # define ROT_SPEED 0.25
 # define ERR_MALLOC	"Error: Memory allocation failed\n"

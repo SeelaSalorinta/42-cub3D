@@ -51,11 +51,13 @@ void	free_and_exit(t_data *data)
 		clean_str(&data->w_tex);
 	if (data->e_tex)
 		clean_str(&data->e_tex);
-	exit(1);
+	if (data->mlx)
+		free(data->mlx);
 }
 
 void	exit_with_msg(t_data *data, char *msg)
 {
 	ft_putstr_fd(msg, 2);
 	free_and_exit(data);
+	exit(1);
 }

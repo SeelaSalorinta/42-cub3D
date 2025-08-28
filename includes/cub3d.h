@@ -6,7 +6,7 @@
 /*   By: ssalorin <ssalorin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:41:27 by ssalorin          #+#    #+#             */
-/*   Updated: 2025/08/28 12:41:31 by ssalorin         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:03:58 by jkarhu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,12 @@ void	process_file(t_data *data);
 
 //raycast.c
 int		render_frame(t_data *data);
-void	render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y);
+double	calc_side_dist(double pos, int map, double delta, int neg);
+int		calc_step(double ray_dir);
+double	calc_wall_x(t_data *data, t_ray *r, double perp);
+void	draw_column(t_data *data, int x, t_ray *r);
+void	set_tex(t_data *data, t_ray *r);
+double	calc_perp_dist(t_data *data, t_ray *r);
 
 //rotations.c
 void	rotate_left(t_data *data);
@@ -69,5 +74,8 @@ void	rotate_right(t_data *data);
 
 //validate_map.c
 void	validate_map(t_data *data);
+
+//render_ray.c
+void	render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y);
 
 #endif

@@ -59,7 +59,9 @@ SRCS = srcs/main.c \
 		srcs/parse_map.c \
 		srcs/process_file.c \
 		srcs/raycast.c \
+		srcs/render_ray.c \
 		srcs/rotations.c \
+		srcs/tex_calc.c \
 		srcs/validate_map.c
 
 OBJS = $(SRCS:.c=.o)

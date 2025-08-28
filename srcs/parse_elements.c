@@ -26,7 +26,10 @@ static char	*get_texture(t_data *data, char *text)
 	while (split[i])
 		i++;
 	if (i != 1)
+	{
+		clean_arr(&split);
 		exit_with_msg(data, ERR_MANY_PATHS);
+	}
 	dup = safe_strdup(data, split[0]);
 	clean_arr(&split);
 	return (dup);
