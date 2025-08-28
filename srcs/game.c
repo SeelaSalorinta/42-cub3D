@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ssalorin <ssalorin@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/28 12:35:28 by ssalorin          #+#    #+#             */
+/*   Updated: 2025/08/28 12:35:45 by ssalorin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	game_loop(t_data *data)
 {
-	//data->mlx = mlx_init(); two mlx inits???
 	data->win = mlx_new_window(data->mlx, 800, 600, "cub3D");
 	mlx_hook(data->win, 2, 1L << 0, handle_keypress, data);
 	mlx_hook(data->win, 17, 0, close_window, data);

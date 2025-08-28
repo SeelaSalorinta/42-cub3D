@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ssalorin <ssalorin@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/28 12:41:27 by ssalorin          #+#    #+#             */
+/*   Updated: 2025/08/28 12:41:31 by ssalorin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -49,7 +61,6 @@ void	process_file(t_data *data);
 
 //raycast.c
 int		render_frame(t_data *data);
-void	mlx_set_line(t_data *data, int x, int start, int end, int color);
 void	render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y);
 
 //rotations.c
