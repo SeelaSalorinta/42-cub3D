@@ -42,7 +42,7 @@ static void	save_file_content(t_data *data)
 
 	i = 0;
 	height = get_height(data, data->file);
-	malloc_array(data, &data->og_file, height);
+	calloc_array(data, &data->og_file, height);
 	fd = open(data->file, O_RDONLY);
 	if (fd < 0)
 		exit_with_msg(data, ERR_OPEN);

@@ -46,9 +46,9 @@ char	*safe_strdup(t_data *data, char *src)
 	return (dup);
 }
 
-void	malloc_array(t_data *data, char ***array, int lines)
+void	calloc_array(t_data *data, char ***array, int lines)
 {
-	*array = malloc(sizeof(char *) * (lines + 1));
+	*array = ft_calloc((size_t)(lines + 1), sizeof(char *));
 	if (!*array)
 		exit_with_msg(data, ERR_MALLOC);
 	(*array)[lines] = NULL;

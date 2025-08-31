@@ -43,7 +43,7 @@ static void	form_map(t_data *data, int y)
 void	parse_map(t_data *data, int y)
 {
 	count_map_lines(data, y);
-	malloc_array(data, &data->map, data->map_height);
+	calloc_array(data, &data->map, data->map_height);
 	form_map(data, y);
 	validate_map(data);
 }
