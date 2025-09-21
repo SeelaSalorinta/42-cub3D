@@ -25,11 +25,11 @@ static void	put_pixel(t_img *img, int x, int y, int color)
 void	draw_column(t_data *data, int x, t_ray *r)
 {
 	int		y;
-	int		d;
+	long	d;
 	int		tex_y;
 	char	*pix;
 	int		color;
-
+	
 	y = r->draw_start;
 	while (y < r->draw_end)
 	{

@@ -1,7 +1,7 @@
-NO ./textures/red.xpm
-SO ./textures/green.xpm
-WE ./textures/blue.xpm
-EA ./textures/yellow.xpm
+NO ./textures/pics/greenlight.png
+SO ./textures/pics/spruce.png
+WE ./textures/pics/redbrick.png
+EA ./textures/pics/mossy.png
 
 F 255,153,204
 C 153,153,255
