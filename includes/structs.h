@@ -33,10 +33,10 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	double	x; //player position on map (changed it to double)
+	double	x;
 	double	y;
-	double	dir_x; // (0,-1) = up, (0,1) = down, (1,0) right, (-1,0) left
-	double	dir_y; //does it need to be double
+	double	dir_x;
+	double	dir_y;
 	int		is_set;
 }	t_player;
 
@@ -65,12 +65,12 @@ typedef struct s_data
 {
 	char		*file;
 	char		**map;
-	char		**og_file; //file with all lines
-	char		*n_tex; //path to north texture
+	char		**og_file;
+	char		*n_tex;
 	char		*s_tex;
 	char		*w_tex;
 	char		*e_tex;
-	int			map_height;//do we need?
+	int			map_height;
 	void		*mlx;
 	void		*win;
 	t_img		n_img;
