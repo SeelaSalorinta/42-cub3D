@@ -62,11 +62,17 @@ static void	save_file_content(t_data *data)
 static void	validate_filename(char *file)
 {
 	int	i;
+	int	dots;
 
 	i = 0;
+	dots = 0;
 	while (file[i])
+	{
+		if (file[i] == '.')
+			dots++;
 		i++;
-	if (i < 5 || file[i - 4] != '.' || file[i - 3] != 'c'
+	}
+	if (dots > 2 || i < 5 || file[i - 4] != '.' || file[i - 3] != 'c'
 		|| file[i - 2] != 'u' || file[i - 1] != 'b')
 	{
 		ft_putstr_fd(ERR_FILE, 2);

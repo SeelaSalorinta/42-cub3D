@@ -32,7 +32,8 @@ LIBFT_SRCS = $(LIBFT_DIR)/ft_isalpha.c $(LIBFT_DIR)/ft_isdigit.c \
 			 $(LIBFT_DIR)/get_next_line_utils_bonus.c $(LIBFT_DIR)/ft_printf.c \
 			 $(LIBFT_DIR)/ft_print_char.c $(LIBFT_DIR)/ft_print_s.c \
 			 $(LIBFT_DIR)/ft_print_nbr.c $(LIBFT_DIR)/ft_print_hex.c \
-			 $(LIBFT_DIR)/ft_print_ptr.c $(LIBFT_DIR)/ft_print_unsig.c
+			 $(LIBFT_DIR)/ft_print_ptr.c $(LIBFT_DIR)/ft_print_unsig.c \
+			 $(LIBFT_DIR)/ft_strcmp.c
 
 LIBFT_OBJS = $(LIBFT_SRCS:.c=.o)
 

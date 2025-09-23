@@ -39,7 +39,7 @@ typedef enum e_flag
 # define ERR_F_DUP	"Error: Duplicate F identifier\n"
 # define ERR_COLOR_FORMAT	"Error: Invalid color. Use R,G,B format.\n"
 # define ERR_ELEMENTS	"Error: Elements in wrong order\n"
-# define ERR_FILE	"Error: Invalid map file\n"
+# define ERR_FILE	"Error: Invalid map file. Must be [map].cub file\n"
 # define ERR_OPEN	"Error: Failed to open file\n"
 # define ERR_USAGE	"Usage: ./cub3D [map.cub]\n"
 # define ERR_NO_DUP	"Error: Duplicate NO identifier\n"
