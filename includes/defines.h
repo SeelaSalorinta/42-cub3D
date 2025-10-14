@@ -26,7 +26,7 @@ typedef enum e_flag
 # define SCREEN_W 800
 # define SCREEN_H 600
 # define MOVE_SPEED 0.5
-# define ROT_SPEED 0.25
+# define ROT_SPEED (2.0 * M_PI / 16)
 # define ERR_MALLOC	"Error: Memory allocation failed\n"
 # define ERR_NO_TEX	"Error: All of the textures are not set\n"
 # define ERR_EMPTY_LINE	"Error: Empty line on map\n"
