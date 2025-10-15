@@ -70,8 +70,8 @@ static char	get_cell(char **map, int map_h, int y, int x)
 
 static int	invalid_neighbor(t_data *data, int y, int x)
 {
-	static const int	dy[8] = {-1, -1, -1, 0, 1, 1, 1, 0};
-	static const int	dx[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
+	static const int	y_dir[8] = {-1, -1, -1, 0, 1, 1, 1, 0};
+	static const int	x_dir[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 	int					i;
 	char				neighbor;
 
@@ -79,7 +79,7 @@ static int	invalid_neighbor(t_data *data, int y, int x)
 	while (i < 8)
 	{
 		neighbor = get_cell(data->map, data->map_height,
-				y + dy[i], x + dx[i]);
+				y + y_dir[i], x + x_dir[i]);
 		if (is_void(neighbor))
 			return (1);
 		if (!is_wall(neighbor) && !is_walkable_tile(neighbor))
