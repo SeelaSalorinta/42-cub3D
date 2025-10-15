@@ -26,7 +26,6 @@ typedef enum e_flag
 # define SCREEN_W 800
 # define SCREEN_H 600
 # define MOVE_SPEED 0.5
-# define ROT_SPEED (2.0 * M_PI / 16)
 # define ERR_MALLOC	"Error: Memory allocation failed\n"
 # define ERR_NO_TEX	"Error: All of the textures are not set\n"
 # define ERR_EMPTY_LINE	"Error: Empty line on map\n"
@@ -45,7 +44,7 @@ typedef enum e_flag
 # define ERR_NO_DUP	"Error: Duplicate NO identifier\n"
 # define ERR_SO_DUP	"Error: Duplicate SO identifier\n"
 # define ERR_WE_DUP	"Error: Duplicate WE identifier\n"
-# define ERR_EA_DUP	"Error: Duplicate WE identifier\n"
+# define ERR_EA_DUP	"Error: Duplicate EA identifier\n"
 # define ERR_INVALID_COLOR	"Error: Color needs to be 0-255\n"
 # define ERR_MANY_PATHS	"Error: Too many paths in texture\n"
 # define TOO_MANY_PLAYERS	"Error: Too many players spawn positions in map\n"

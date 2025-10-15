@@ -88,10 +88,11 @@ clean:
 	rm -f $(OBJS)
 	@make -C $(LIBFT_DIR) clean
 
-fclean: clean
+fclean:
 	rm -f $(NAME)
+	rm -f $(OBJS)
 	@make -C $(LIBFT_DIR) fclean
-	@make -C $(MINILIBX_DIR) clean
+	@if [ -d "$(MINILIBX_DIR)" ]; then rm -rf "$(MINILIBX_DIR)"; fi
 
 re: fclean all
 
