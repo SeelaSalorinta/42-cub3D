@@ -56,30 +56,36 @@ static void	update_player_pos(t_data *data, int y, int x)
 	data->player.is_set = TRUE;
 }
 
-static int	not_space_or_wall(char c)
+static char	get_cell(char **map, int map_h, int y, int x)
 {
-	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	else
-		return (0);
+	int	len;
+
+	len = row_len(map, y);
+	if (y < 0 || y >= map_h)
+		return (' ');
+	if (x < 0 || x >= len)
+		return (' ');
+	return (map[y][x]);
 }
 
 static int	invalid_neighbor(t_data *data, int y, int x)
 {
-	if (y == (data->map_height - 1) || y <= 0)
-		return (1);
-	if (!data->map[y - 1][x] || (data->map[y - 1][x] != '1'
-		&& !not_space_or_wall(data->map[y - 1][x])))
-		return (1);
-	if (!data->map[y + 1][x] || (data->map[y + 1][x] != '1'
-		&& !not_space_or_wall(data->map[y + 1][x])))
-		return (1);
-	if (!data->map[y][x - 1] || (data->map[y][x - 1] != '1'
-		&& !not_space_or_wall(data->map[y][x - 1])))
-		return (1);
-	if (!data->map[y][x + 1] || (data->map[y][x + 1] != '1'
-		&& !not_space_or_wall(data->map[y][x + 1])))
-		return (1);
+	static const int	dy[8] = {-1, -1, -1, 0, 1, 1, 1, 0};
+	static const int	dx[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
+	int					i;
+	char				neighbor;
+
+	i = 0;
+	while (i < 8)
+	{
+		neighbor = get_cell(data->map, data->map_height,
+				y + dy[i], x + dx[i]);
+		if (is_void(neighbor))
+			return (1);
+		if (!is_wall(neighbor) && !is_walkable_tile(neighbor))
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
@@ -97,7 +103,7 @@ void	validate_map(t_data *data)
 			if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
 				|| data->map[y][x] == 'E' || data->map[y][x] == 'W')
 				update_player_pos(data, y, x);
-			if (not_space_or_wall(data->map[y][x]))
+			if (is_walkable_tile(data->map[y][x]))
 			{
 				if (invalid_neighbor(data, y, x))
 					exit_with_msg(data, ERR_MAP_WALLS);

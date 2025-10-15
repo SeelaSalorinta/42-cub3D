@@ -48,6 +48,6 @@ typedef enum e_flag
 # define ERR_MANY_PATHS	"Error\nToo many paths in texture\n"
 # define ERR_MANY_PLAYERS	"Error\nToo many players spawn positions in map\n"
 # define ERR_NO_PLAYER	"Error\nYou must have one player in map\n"
-# define ERR_MAP_WALLS	"Error\nMap not enclosed by walls\n"
+# define ERR_MAP_WALLS	"Error\nMap not enclosed or contains inner spaces\n"
 
 #endif

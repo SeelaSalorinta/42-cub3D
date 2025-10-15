@@ -57,3 +57,15 @@ int	map_line(char *line)
 	}
 	return (1);
 }
+
+int	row_len(char **map, int y)
+{
+	int	i;
+
+	i = 0;
+	if (!map[y])
+		return (0);
+	while (map[y][i])
+		i++;
+	return (i);
+}

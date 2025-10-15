@@ -63,6 +63,7 @@ SRCS = srcs/main.c \
 		srcs/render_ray.c \
 		srcs/rotations.c \
 		srcs/tex_calc.c \
+		srcs/tile_checks.c \
 		srcs/validate_map.c
 
 OBJS = $(SRCS:.c=.o)

@@ -28,6 +28,7 @@ int		atoi_positive(char *str, int *error);
 int		empty_line(char *line);
 int		type_line(char *line);
 int		map_line(char *line);
+int		row_len(char **map, int y);
 
 //free_and_exit.c
 void	free_and_exit(t_data *data);
@@ -61,21 +62,28 @@ void	process_file(t_data *data);
 
 //raycast.c
 int		render_frame(t_data *data);
-double	calc_side_dist(double pos, int map, double delta, int neg);
-int		calc_step(double ray_dir);
-double	calc_wall_x(t_data *data, t_ray *r, double perp);
 void	draw_column(t_data *data, int x, t_ray *r);
-void	set_tex(t_data *data, t_ray *r);
-double	calc_perp_dist(t_data *data, t_ray *r);
+
+//render_ray.c
+void	render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y);
 
 //rotations.c
 void	rotate_left(t_data *data);
 void	rotate_right(t_data *data);
 
+//tex_calc.c
+double	calc_side_dist(double pos, int map, double delta, int neg);
+int		calc_step(double ray_dir);
+double	calc_wall_x(t_data *data, t_ray *r, double perp);
+void	set_tex(t_data *data, t_ray *r);
+double	calc_perp_dist(t_data *data, t_ray *r);
+
+//tile_checks.c
+int		is_walkable_tile(char c);
+int		is_wall(char c);
+int		is_void(char c);
+
 //validate_map.c
 void	validate_map(t_data *data);
-
-//render_ray.c
-void	render_ray(t_data *data, int x, double ray_dir_x, double ray_dir_y);
 
 #endif
