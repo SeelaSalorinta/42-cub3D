@@ -37,7 +37,6 @@ typedef enum e_flag
 # define ERR_C_DUP	"Error\n Duplicate C identifier\n"
 # define ERR_F_DUP	"Error\n Duplicate F identifier\n"
 # define ERR_COLOR_FORMAT	"Error\n Invalid color. Use R,G,B format.\n"
-# define ERR_ELEMENTS	"Error\n Elements in wrong order\n"
 # define ERR_FILE	"Error\n Invalid map file. Must be [map].cub file\n"
 # define ERR_OPEN	"Error\n Failed to open file\n"
 # define ERR_USAGE	"Usage\n ./cub3D [map.cub]\n"
@@ -47,7 +46,7 @@ typedef enum e_flag
 # define ERR_EA_DUP	"Error\n Duplicate EA identifier\n"
 # define ERR_INVALID_COLOR	"Error\n Color needs to be 0-255\n"
 # define ERR_MANY_PATHS	"Error\n Too many paths in texture\n"
-# define TOO_MANY_PLAYERS	"Error\n Too many players spawn positions in map\n"
+# define ERR_MANY_PLAYERS	"Error\n Too many players spawn positions in map\n"
 # define ERR_NO_PLAYER	"Error\n You must have one player in map\n"
 # define ERR_MAP_WALLS	"Error\n Map not enclosed by walls\n"
 
