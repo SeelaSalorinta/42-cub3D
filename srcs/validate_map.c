@@ -33,7 +33,7 @@ static void	set_ns_direction(t_data *data, char dir)
 static void	update_player_pos(t_data *data, int y, int x)
 {
 	if (data->player.is_set == TRUE)
-		exit_with_msg(data, TOO_MANY_PLAYERS);
+		exit_with_msg(data, ERR_MANY_PLAYERS);
 	data->player.y = y;
 	data->player.x = x;
 	if (data->map[y][x] == 'N' || data->map[y][x] == 'S')

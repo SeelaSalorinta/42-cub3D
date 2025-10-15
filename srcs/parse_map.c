@@ -46,4 +46,6 @@ void	parse_map(t_data *data, int y)
 	calloc_array(data, &data->map, data->map_height);
 	form_map(data, y);
 	validate_map(data);
+	if (data->player.is_set == FALSE)
+		exit_with_msg(data, ERR_NO_PLAYER);
 }
