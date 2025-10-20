@@ -70,12 +70,14 @@ static char	get_cell(char **map, int map_h, int y, int x)
 
 static int	invalid_neighbor(t_data *data, int y, int x)
 {
-	static const int	y_dir[8] = {-1, -1, -1, 0, 1, 1, 1, 0};
-	static const int	x_dir[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
-	int					i;
-	char				neighbor;
+	int		y_dir[8];
+	int		x_dir[8];
+	int		i;
+	char	neighbor;
 
 	i = 0;
+	ft_memcpy(y_dir, (int [8]){-1, -1, -1, 0, 1, 1, 1, 0}, sizeof y_dir);
+	ft_memcpy(x_dir, (int [8]){-1, 0, 1, 1, 1, 0, -1, -1}, sizeof x_dir);
 	while (i < 8)
 	{
 		neighbor = get_cell(data->map, data->map_height,

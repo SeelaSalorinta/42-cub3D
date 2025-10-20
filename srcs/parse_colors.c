@@ -48,18 +48,15 @@ static void	save_color(t_data *data, char *line, int *i, char *target)
 		(*i)++;
 }
 
-t_color	parse_colors(t_data *data, char *line)
+static t_color	handle_line(t_data *data, char *line, int i, int color_num)
 {
 	char	red[4];
 	char	green[4];
 	char	blue[4];
-	int		i;
-	int		color_num;
 
-	i = 0;
-	color_num = RED;
-	while (line[i] && line[i] == ' ')
-		i++;
+	ft_memcpy(red, (int [4]){0, 0, 0, 0}, sizeof red);
+	ft_memcpy(green, (int [4]){0, 0, 0, 0}, sizeof green);
+	ft_memcpy(blue, (int [4]){0, 0, 0, 0}, sizeof blue);
 	while (line[i])
 	{
 		if (color_num == RED)
@@ -67,10 +64,26 @@ t_color	parse_colors(t_data *data, char *line)
 		else if (color_num == GREEN)
 			save_color(data, line, &i, green);
 		else if (color_num == BLUE)
+		{
 			save_color(data, line, &i, blue);
+			if (line[i - 1] && line[i - 1] == ',')
+				exit_with_msg(data, ERR_COLOR_FORMAT);
+		}
 		else
 			exit_with_msg(data, ERR_COLOR_FORMAT);
 		color_num++;
 	}
 	return (validate_color(data, red, green, blue));
+}
+
+t_color	parse_colors(t_data *data, char *line)
+{
+	int		i;
+	int		color_num;
+
+	i = 0;
+	color_num = RED;
+	while (line[i] && line[i] == ' ')
+		i++;
+	return (handle_line(data, line, i, color_num));
 }
