@@ -60,12 +60,12 @@ int	map_line(char *line)
 
 int	row_len(char **map, int y)
 {
-	int	i;
+	int	x;
 
-	i = 0;
-	if (!map[y])
+	x = 0;
+	if (!map || y < 0 || !map[y])
 		return (0);
-	while (map[y][i])
-		i++;
-	return (i);
+	while (map[y][x])
+		x++;
+	return (x);
 }
